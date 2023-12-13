@@ -21,7 +21,7 @@ const Timer = () => {
 
   return (
     <div>
-      <p style={{fontSize:'60px',color:'white',margin:'0px',paddingTop:'15px'}}>{`${hours}:${minutes}:${seconds}`}</p>
+      <p style={{fontSize:'60px',color:'white',margin:'0px',paddingTop:'15px'}}>63:14:03</p>
     </div>
   );
 };

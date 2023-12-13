@@ -8,6 +8,15 @@ import { useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner';
 
 const Main = () =>{
+  function Loading() {
+    return (
+      <Oval
+      color="#ff0000"
+      height={100}
+      width={100}
+      />
+    )
+  }
     const [Data, setData] = useState(false);
     const [Data2,setData2] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +29,7 @@ const Main = () =>{
       const timeout = setTimeout(() => {
         history('/ResultPage');
         setIsLoading(false);
+        Loading();
       }, 2000);
 
 

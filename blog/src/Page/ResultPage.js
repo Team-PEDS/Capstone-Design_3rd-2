@@ -183,7 +183,7 @@ const ResultPage =()=> {
 
 const MainBox = styled.div`
   width:1500px;
-  height:840px;
+  height:900px;
   display : flex;
   margin: 0 auto;
   padding-top: 20px;
@@ -262,13 +262,12 @@ const LeftInner2Chart = styled.div`
 
 // 추가된 CSS
 const ChatBox = styled.div`
-
-  height: 197px;
   width: 676px;
   border: 2px solid #132229;
   background-color: #08131A;
   color: white;
   padding: 10px;
+  overflow: scroll;
 `;
 
 const ChatContent = styled.div`
@@ -279,7 +278,6 @@ const ChatContent = styled.div`
 const ChatInput = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 180px;
 
   input {
     flex-grow: 1;
