@@ -12,7 +12,7 @@ import Chart from '../Component/Chart.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
-const ResultPage =()=> {
+const ResultPage = () => {
   const ServerIP = process.env.REACT_APP_FLASK_IP;
   const [result, setResult] = useState('');
   const charts1 = 'charts1';
@@ -21,7 +21,7 @@ const ResultPage =()=> {
   const charts4 = 'charts4';
   const [loading, setLoading] = useState(true);
   const [resultVisible, setResultVisible] = useState(true);
-  
+
 
   const [isChatVisible, setChatVisible] = useState(false);
   const [userInput, setUserInput] = useState('');
@@ -45,7 +45,7 @@ const ResultPage =()=> {
 
       // 새로운 대화를 상태에 추가
       setAssistantReplies([...assistantReplies, { role: 'user', content: userInput }, { role: 'assistant', content: assistantReply }]);
-      
+
       // 사용자 입력 초기화
       setUserInput('');
     } catch (error) {
@@ -56,7 +56,7 @@ const ResultPage =()=> {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
+
 
         const response = await axios.get(`http://${ServerIP}/users`);
         setResult(response.data.members[0].name);
@@ -123,8 +123,13 @@ const ResultPage =()=> {
                     ))}
                   </ChatContent>
                   <ChatInput>
-                    <input type="text" value={userInput} onChange={handleUserInput} />
-                    <button onClick={handleSendMessage} >Send</button>
+                    <input type="text" value={userInput}
+                      onChange={handleUserInput} onKeyUp={(event) => {
+                        if (event.keyCode === 13) {
+                          handleSendMessage();
+                        }
+                      }} />
+                    <button onClick={handleSendMessage}  >전송</button>
                   </ChatInput>
                 </ChatBox>
               ) : null}
@@ -144,13 +149,13 @@ const ResultPage =()=> {
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <RightBox2>
 
-                    <div style={{margin:'0 auto'}}>
-                      {/* <Oval color="#ff0000" height={100} width={100} /> */}
-                    </div>
- 
-                    <div>
-                      <Chart dataParents={charts1} />
-                    </div>
+                  <div style={{ margin: '0 auto' }}>
+                    {/* <Oval color="#ff0000" height={100} width={100} /> */}
+                  </div>
+
+                  <div>
+                    <Chart dataParents={charts1} />
+                  </div>
 
                 </RightBox2>
                 <RightBox2>
@@ -262,6 +267,7 @@ const LeftInner2Chart = styled.div`
 
 // 추가된 CSS
 const ChatBox = styled.div`
+  height: 200px;
   width: 676px;
   border: 2px solid #132229;
   background-color: #08131A;
